@@ -42,38 +42,28 @@ Sigue estos pasos para instalar el módulo en tu instancia de Odoo:
 
 1. **Gestión de Citas**  
    - Accede al menú "Citas" para programar y gestionar las citas de los pacientes.
-   - Define el fisioterapeuta y el tratamiento asignado.
+   - Define el fisioterapeuta asignado, el tratamiento asignado, el paciente asignado, la fecha programada y el estado de la cita.
 
 2. **Administración de Pacientes**  
    - Agrega, edita y visualiza información de pacientes dentro del módulo.
+   - Puedes gestionar el nombre y inf. de contacto, ver las citas asignadas.
 
 3. **Fisioterapeutas**  
    - Administra el personal de fisioterapia con información detallada.
+   - Puedes gestionar el nombre, inf. de contacto y su especialidad, y ver las citas asignadas.
 
-4. **Reportes en PDF**  
+4. **Gestión de Tratamientos**  
+   - Crea y administra tratamientos para los pacientes.
+   - Define el nombre, descripción y precio.
+   - Se puede ver las citas asignadas a cada tratamiento.
+
+5. **Reportes en PDF**  
    - Genera informes de citas en formato PDF desde la vista de una cita.
-
-## Contribuciones
-
-Si deseas mejorar este módulo o reportar errores, por favor sigue estos pasos:
-
-1. **Fork** el repositorio en GitHub.
-2. Crea una nueva rama con el siguiente comando:
-   ```sh
-   git checkout -b feature-nueva-funcionalidad
-   ```
-3. Realiza los cambios y súbelos:
-   ```sh
-   git commit -m "Añadida nueva funcionalidad"
-   git push origin feature-nueva-funcionalidad
-   ```
-4. Abre un **Pull Request** en GitHub.
 
 ## Licencia
 
-Este módulo se distribuye bajo la licencia [MIT](LICENSE).
+Este módulo se distribuye bajo la licencia [MIT](https://opensource.org/license/MIT).
 
 ---
 
 ### ¡Gracias por usar Odoo-Physiotherapy-Clinic!
-
