@@ -40,7 +40,3 @@ class PhysioDate(models.Model):
         for record in self:
             if record.datetime and record.datetime < fields.Datetime.now():
                 raise ValidationError("No se pueden programar citas en el pasado.")
-
-    @api.model
-    def get_current_time(self):
-        return datetime.now().strftime('%d/%m/%Y %H:%M:%S')
