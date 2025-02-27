@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_physio_date,physio.date,model_physio_date,base.group_user,1,1,1,0
+access_physio_patient,physio.patient,model_physio_patient,base.group_user,1,1,1,0
+access_physio_physiotherapist, physio.physiotherapist,model_physio_physiotherapist,base.group_user,1,0,0,0
+access_physio_treatment,physio.treatment,model_physio_treatment,base.group_user,1,0,0,0
+access_physio_date,physio.date,model_physio_date,base.group_system,1,1,1,1
+access_physio_patient,physio.patient,model_physio_patient,base.group_system,1,1,1,1
+access_physio_physiotherapist, physio.physiotherapist,model_physio_physiotherapist,base.group_system,1,1,1,1
+access_physio_treatment,physio.treatment,model_physio_treatment,base.group_system,1,1,1,1
+
+
+

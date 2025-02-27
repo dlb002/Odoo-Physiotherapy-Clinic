@@ -1,0 +1,240 @@
+<odoo>
+    <!-- Vista para citas -->
+    <record id="view_physio_date_tree" model="ir.ui.view">
+        <field name="name">physio.date.tree</field>
+        <field name="model">physio.date</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-danger="state == 'cancelled'"
+                decoration-success="state == 'confirmed'"
+                decoration-info="state == 'performed'"
+                decoration-warning="state == 'pending'"
+            >
+                <field name="patient_id"/>
+                <field name="physiotherapist_id"/>
+                <field name="datetime"/>
+                <field name="state"/>
+                <field name="treatment_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_physio_date_form" model="ir.ui.view">
+        <field name="name">physio.date.form</field>
+        <field name="model">physio.date</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="physiotherapist_id"/>
+                        <field name="datetime"/>
+                        <field name="state" widget="selection"/>
+                        <field name="treatment_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_physio_date_kanban" model="ir.ui.view">
+        <field name="name">physio.date.kanban</field>
+        <field name="model">physio.date</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <strong class="text-primary">
+                                    Cita:
+                                    <field name="datetime"/>
+                                </strong>
+                                <span class="badge badge-info">
+                                    <field name="state"/>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <div class="mt-1">
+                                    <span class="text-muted">Paciente: </span>
+                                    <field name="patient_id"/>
+                                </div>
+                                <div class="mt-1">
+                                    <span class="text-muted">Fisioterapeuta: </span>
+                                    <field name="physiotherapist_id"/>
+                                </div>
+                                <div class="mt-1">
+                                    <span class="text-muted">Tratamiento: </span>
+                                    <field name="treatment_id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista para pacientes -->
+    <record id="view_physio_patient_tree" model="ir.ui.view">
+        <field name="name">physio.patient.tree</field>
+        <field name="model">physio.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="telephone"/>
+                <field name="email"/>
+                <field name="date_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_physio_patient_form" model="ir.ui.view">
+        <field name="name">physio.patient.form</field>
+        <field name="model">physio.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="telephone"/>
+                        <field name="email"/>
+                        <field name="date_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_physio_patient_kanban" model="ir.ui.view">
+        <field name="name">physio.patient.kanban</field>
+        <field name="model">physio.patient</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <strong class="text-primary">
+                                    Paciente:
+                                    <field name="name"/>
+                                </strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="mt-1">
+                                    <span class="text-muted">Teléfono:</span>
+                                    <field name="telephone"/>
+                                </div>
+                                <div class="mt-1">
+                                    <span class="text-muted">Correo:</span>
+                                    <field name="email"/>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="text-muted">Citas:</span>
+                                    <field name="date_ids" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista para fisioterapeutas -->
+    <record id="view_physio_physiotherapist_tree" model="ir.ui.view">
+        <field name="name">physio.physiotherapist.tree</field>
+        <field name="model">physio.physiotherapist</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="telephone"/>
+                <field name="email"/>
+                <field name="specialty"/>
+                <field name="date_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_physio_physiotherapist_form" model="ir.ui.view">
+        <field name="name">physio.physiotherapist.form</field>
+        <field name="model">physio.physiotherapist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="telephone"/>
+                        <field name="email"/>
+                        <field name="specialty"/>
+                        <field name="date_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista para fisioterapeutas -->
+    <record id="view_physio_treatment_tree" model="ir.ui.view">
+        <field name="name">physio.treatment.tree</field>
+        <field name="model">physio.treatment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="price"/>
+                <field name="date_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_physio_treatment_form" model="ir.ui.view">
+        <field name="name">physio.treatment.form</field>
+        <field name="model">physio.treatment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="price" widget="monetary"/>
+                        <field name="date_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acciones -->
+    <record id="action_physio_date" model="ir.actions.act_window">
+        <field name="name">Citas</field>
+        <field name="res_model">physio.date</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="action_physio_patient" model="ir.actions.act_window">
+        <field name="name">Pacientes</field>
+        <field name="res_model">physio.patient</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="action_physio_physiotherapist" model="ir.actions.act_window">
+        <field name="name">Fisioterapeutas</field>
+        <field name="res_model">physio.physiotherapist</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_physio_treatment" model="ir.actions.act_window">
+        <field name="name">Tratamientos</field>
+        <field name="res_model">physio.treatment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem id="menu_physio_root" name="Clínica de Fisioterapia"/>
+    <menuitem id="menu_physio_date" name="Citas" parent="menu_physio_root" action="action_physio_date"/>
+    <menuitem id="menu_physio_patient" name="Pacientes" parent="menu_physio_root" action="action_physio_patient"/>
+    <menuitem id="menu_physio_physiotherapist" name="Fisioterapeutas" parent="menu_physio_root" action="action_physio_physiotherapist"/>
+    <menuitem id="menu_physio_treatment" name="Tratamientos" parent="menu_physio_root" action="action_physio_treatment"/>
+
+</odoo>

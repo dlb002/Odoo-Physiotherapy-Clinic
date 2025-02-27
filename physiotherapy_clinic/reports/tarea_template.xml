@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="physio_date_pdf_template_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <style>
+                            .page {
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            }
+                            h1 {
+                            font-size: 24px;
+                            color: #007BFF; /* Color azul */
+                            }
+                            p {
+                            font-size: 14px;
+                            }
+                            .highlight {
+                            background-color: #f0f8ff; /* Color de fondo claro */
+                            padding-top: 5px;
+                            padding-right: 5px;
+                            padding-bottom: 5px;
+                            }
+                            .impresion {
+                            font-size: 12px;
+                            color: #666;
+                            text-align: right;
+                            margin-top:20px;
+                            }
+                        </style>
+                        <h1>Cita Programada</h1>
+                        <p class="highlight">Fecha:
+                            <span t-field="doc.datetime"/>
+                        </p>
+                        <p>Paciente:
+                            <span t-field="doc.patient_id.name"/>
+                        </p>
+                        <p>Fisioterapeuta:
+                            <span t-field="doc.physiotherapist_id.name"/>
+                        </p>
+                        <p>Tratamiento:
+                            <span t-field="doc.treatment_id.name"/>
+                        </p>
+                        <p>Estado:
+                            <span t-field="doc.state"/>
+                        </p>
+                        <p class="impresion">
+                            (impreso el: <span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>)
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="physio_date_pdf_template_report_action" model="ir.actions.report">
+        <field name="name">Cita</field>
+        <field name="model">physio.date</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">physiotherapy_clinic.physio_date_pdf_template_report</field>
+        <field name="report_file">physiotherapy_clinic.physio_date_pdf_template_report</field>
+        <field name="print_report_name">'Cita Programada - ' + object.datetime.strftime('%d-%m-%Y %H-%M-%S') + ' - ' + object.patient_id.name
+        </field>
+        <field name="binding_model_id" ref="model_physio_date"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
