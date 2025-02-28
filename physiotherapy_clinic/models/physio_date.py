@@ -25,23 +25,41 @@ class PhysioDate(models.Model):
     treatment_id = fields.Many2one(comodel_name="physio.treatment", string="Tratamiento", required=True)
     treatment_duration = fields.Integer(string="Duración (minutos)", related="treatment_id.duration", readonly=True)
 
-    @api.constrains('datetime', 'physiotherapist_id', 'treatment_duration')
+    @api.constrains('datetime', 'physiotherapist_id', 'treatment_duration', 'patient_id')
     def _check_duplicate_appointment(self):
-        """Evitar que un fisioterapeuta tenga citas superpuestas"""
+        """Evitar que un fisioterapeuta o paciente tenga citas superpuestas"""
         for record in self:
             # Calcular la hora final de la cita con duración.
             end_time = record.datetime + timedelta(minutes=record.treatment_duration)
 
-            # Buscar otras citas del mismo fisioterapeuta que se solapen con la nueva cita.
-            overlapping_appointments = self.env['physio.date'].search([
+            # Verificación de solapamiento para el fisioterapeuta
+            overlapping_appointments_physio = self.env['physio.date'].search([
                 ('physiotherapist_id', '=', record.physiotherapist_id.id),
-                ('datetime', '<', end_time),  # La nueva cita termina antes que una ya programada.
-                ('datetime', '>', record.datetime),  # La nueva cita empieza después que una ya programada.
-                ('id', '!=', record.id)  # Excluir la misma cita en caso de edición.
+                ('id', '!=', record.id),  # Excluir la misma cita en caso de edición.
+                '|',
+                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio.
+                ('datetime', '>=', record.datetime),  # La nueva cita empieza antes o al mismo tiempo que otra.
+                '|',
+                ('datetime', '>=', record.datetime),  # La nueva cita empieza después de la otra.
+                ('datetime', '<=', end_time)  # La nueva cita termina antes de la otra.
             ])
 
-            if overlapping_appointments:
+            # Verificación de solapamiento para el paciente.
+            overlapping_appointments_patient = self.env['physio.date'].search([
+                ('patient_id', '=', record.patient_id.id),
+                ('id', '!=', record.id),  # Excluir la misma cita en caso de edición.
+                '|',
+                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio.
+                ('datetime', '>=', record.datetime),  # La nueva cita empieza antes o al mismo tiempo que otra.
+                '|',
+                ('datetime', '>=', record.datetime),  # La nueva cita empieza después de la otra.
+                ('datetime', '<=', end_time)  # La nueva cita termina antes de la otra.
+            ])
+
+            if overlapping_appointments_physio:
                 raise ValidationError("El fisioterapeuta ya tiene una cita programada que se solapa con esta.")
+            if overlapping_appointments_patient:
+                raise ValidationError("El paciente ya tiene una cita programada que se solapa con esta.")
 
 
     @api.constrains('datetime')
