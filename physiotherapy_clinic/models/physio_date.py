@@ -32,28 +32,20 @@ class PhysioDate(models.Model):
             # Calcular la hora final de la cita con duración.
             end_time = record.datetime + timedelta(minutes=record.treatment_duration)
 
-            # Verificación de solapamiento para el fisioterapeuta
+            # Verificación de solapamiento para el fisioterapeuta, solo en el mismo día.
             overlapping_appointments_physio = self.env['physio.date'].search([
                 ('physiotherapist_id', '=', record.physiotherapist_id.id),
                 ('id', '!=', record.id),  # Excluir la misma cita en caso de edición.
-                '|',
-                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio.
-                ('datetime', '>=', record.datetime),  # La nueva cita empieza antes o al mismo tiempo que otra.
-                '|',
-                ('datetime', '>=', record.datetime),  # La nueva cita empieza después de la otra.
-                ('datetime', '<=', end_time)  # La nueva cita termina antes de la otra.
+                ('datetime', '>=', record.datetime.date()),  # Solo citas después de la fecha de la nueva cita.
+                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio de otras.
             ])
 
-            # Verificación de solapamiento para el paciente.
+            # Verificación de solapamiento para el paciente, solo en el mismo día.
             overlapping_appointments_patient = self.env['physio.date'].search([
                 ('patient_id', '=', record.patient_id.id),
                 ('id', '!=', record.id),  # Excluir la misma cita en caso de edición.
-                '|',
-                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio.
-                ('datetime', '>=', record.datetime),  # La nueva cita empieza antes o al mismo tiempo que otra.
-                '|',
-                ('datetime', '>=', record.datetime),  # La nueva cita empieza después de la otra.
-                ('datetime', '<=', end_time)  # La nueva cita termina antes de la otra.
+                ('datetime', '>=', record.datetime.date()),  # Solo citas después de la fecha de la nueva cita.
+                ('datetime', '<', end_time),  # La nueva cita termina después de la hora de inicio de otras.
             ])
 
             if overlapping_appointments_physio:
