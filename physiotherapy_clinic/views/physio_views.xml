@@ -222,7 +222,7 @@
     <record id="action_physio_date" model="ir.actions.act_window">
         <field name="name">Citas</field>
         <field name="res_model">physio.date</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form,kanban,calendar</field>
     </record>
 
     <record id="action_physio_patient" model="ir.actions.act_window">
