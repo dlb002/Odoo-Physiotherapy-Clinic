@@ -58,19 +58,19 @@
                             </div>
                             <div class="card-body">
                                 <div class="mt-1">
-                                    <span class="text-muted">Paciente:</span>
+                                    <span class="text-muted">Paciente: </span>
                                     <field name="patient_id"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Fisioterapeuta:</span>
+                                    <span class="text-muted">Fisioterapeuta: </span>
                                     <field name="physiotherapist_id"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Tratamiento:</span>
+                                    <span class="text-muted">Tratamiento: </span>
                                     <field name="treatment_id"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Duración:</span>
+                                    <span class="text-muted">Duración: </span>
                                     <field name="treatment_duration"/>
                                 </div>
                             </div>
@@ -142,15 +142,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="mt-1">
-                                    <span class="text-muted">Teléfono:</span>
+                                    <span class="text-muted">Teléfono: </span>
                                     <field name="telephone"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Correo:</span>
+                                    <span class="text-muted">Correo: </span>
                                     <field name="email"/>
                                 </div>
                                 <div class="mt-2">
-                                    <span class="text-muted">Citas:</span>
+                                    <span class="text-muted">Citas: </span>
                                     <field name="date_ids" widget="many2many_tags"/>
                                 </div>
                             </div>
