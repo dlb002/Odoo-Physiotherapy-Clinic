@@ -1,0 +1,52 @@
+@startuml
+class PhysioPatient {
+  - _name
+  - _description
+  + name
+  + telephone
+  + email
+  + date_ids: One2many (PhysioDate)
+  ---
+  + _check_email_format(self)
+}
+
+class PhysioPhysiotherapist {
+  - _name
+  - _description
+  + name
+  + telephone
+  + email
+  + specialty
+  + date_ids: One2many (PhysioDate)
+  ---
+  + _check_email_format(self)
+}
+
+class PhysioDate {
+  - _name
+  - _description
+  + patient_id: Many2one (PhysioPatient)
+  + physiotherapist_id: Many2one (PhysioPhysiotherapist)
+  + datetime
+  + state
+  + treatment_id: Many2one (PhysioTreatment)
+  ---
+  + _check_duplicate_appointment(self)
+  + _check_future_date(self)
+}
+
+class PhysioTreatment {
+  - _name
+  - _description
+  + name
+  + description
+  + price
+  + date_ids: One2many (PhysioDate)
+  ---
+  + _check_price(self)
+}
+
+PhysioPatient "1" -- "0..*" PhysioDate : tiene
+PhysioPhysiotherapist "1" -- "0..*" PhysioDate : atiende
+PhysioTreatment "1" -- "0..*" PhysioDate : se aplica en
+@enduml
