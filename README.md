@@ -42,7 +42,7 @@ Sigue estos pasos para instalar el módulo en tu instancia de Odoo:
 
 1. **Gestión de Citas**  
    - Accede al menú "Citas" para programar y gestionar las citas de los pacientes.
-   - Define el fisioterapeuta asignado, el tratamiento asignado, el paciente asignado, la fecha programada y el estado de la cita.
+   - Define el fisioterapeuta asignado, el tratamiento asignado, el paciente asignado, la fecha programada, duración y el estado de la cita.
 
 2. **Administración de Pacientes**  
    - Agrega, edita y visualiza información de pacientes dentro del módulo.
@@ -54,7 +54,7 @@ Sigue estos pasos para instalar el módulo en tu instancia de Odoo:
 
 4. **Gestión de Tratamientos**  
    - Crea y administra tratamientos para los pacientes.
-   - Define el nombre, descripción y precio.
+   - Define el nombre, descripción, precio y duración.
    - Se puede ver las citas asignadas a cada tratamiento.
 
 5. **Reportes en PDF**  
