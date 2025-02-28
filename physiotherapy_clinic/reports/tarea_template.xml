@@ -43,6 +43,9 @@
                         <p>Tratamiento:
                             <span t-field="doc.treatment_id.name"/>
                         </p>
+                        <p>Duración:
+                            <span t-field="doc.treatment_duration"/>
+                        </p>
                         <p>Estado:
                             <span t-field="doc.state"/>
                         </p>

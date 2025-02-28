@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-
+from datetime import timedelta
 
 class PhysioDate(models.Model):
     """
@@ -24,18 +23,26 @@ class PhysioDate(models.Model):
         default="pending"
     )
     treatment_id = fields.Many2one(comodel_name="physio.treatment", string="Tratamiento", required=True)
+    treatment_duration = fields.Integer(string="Duración (minutos)", related="treatment_id.duration", readonly=True)
 
-    @api.constrains('datetime', 'physiotherapist_id')
+    @api.constrains('datetime', 'physiotherapist_id', 'treatment_duration')
     def _check_duplicate_appointment(self):
-        """Evitar que un fisioterapeuta tenga dos citas en el mismo horario"""
+        """Evitar que un fisioterapeuta tenga citas superpuestas"""
         for record in self:
-            existing_appointment = self.env['physio.date'].search([
+            # Calcular la hora final de la cita con duración.
+            end_time = record.datetime + timedelta(minutes=record.treatment_duration)
+
+            # Buscar otras citas del mismo fisioterapeuta que se solapen con la nueva cita.
+            overlapping_appointments = self.env['physio.date'].search([
                 ('physiotherapist_id', '=', record.physiotherapist_id.id),
-                ('datetime', '=', record.datetime),
+                ('datetime', '<', end_time),  # La nueva cita termina antes que una ya programada.
+                ('datetime', '>', record.datetime),  # La nueva cita empieza después que una ya programada.
                 ('id', '!=', record.id)  # Excluir la misma cita en caso de edición.
             ])
-            if existing_appointment:
-                raise ValidationError("El fisioterapeuta ya tiene una cita programada en esa fecha y hora.")
+
+            if overlapping_appointments:
+                raise ValidationError("El fisioterapeuta ya tiene una cita programada que se solapa con esta.")
+
 
     @api.constrains('datetime')
     def _check_future_date(self):

@@ -13,6 +13,7 @@ class PhysioTreatment(models.Model):
     name = fields.Char(string="Nombre", required=True)
     description = fields.Char(string="Descripción")
     price = fields.Float(string="Precio", required=True)
+    duration = fields.Integer(string="Duracion", required=True)
     date_ids = fields.One2many(comodel_name="physio.date", inverse_name="treatment_id", string="Historial de citas")
 
     @api.constrains('price')
@@ -21,3 +22,10 @@ class PhysioTreatment(models.Model):
         for record in self:
             if record.price < 0:
                 raise ValidationError("El precio del tratamiento debe ser mayor o igual a 0.")
+
+    @api.constrains('duration')
+    def _check_duration(self):
+        """No permitir duraciones negativas o cero"""
+        for record in self:
+            if record.duration <= 0:
+                raise ValidationError("La duración del tratamiento debe ser mayor a 0 minutos.")

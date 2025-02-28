@@ -15,6 +15,7 @@
                 <field name="datetime"/>
                 <field name="state"/>
                 <field name="treatment_id"/>
+                <field name="treatment_duration"/>
             </tree>
         </field>
     </record>
@@ -31,6 +32,7 @@
                         <field name="datetime"/>
                         <field name="state" widget="selection"/>
                         <field name="treatment_id"/>
+                        <field name="treatment_duration"/>
                     </group>
                 </sheet>
             </form>
@@ -67,6 +69,10 @@
                                     <span class="text-muted">Tratamiento:</span>
                                     <field name="treatment_id"/>
                                 </div>
+                                <div class="mt-1">
+                                    <span class="text-muted">Duración:</span>
+                                    <field name="treatment_duration"/>
+                                </div>
                             </div>
                         </div>
                     </t>
@@ -83,6 +89,7 @@
                 <field name="patient_id" string="Paciente"/>
                 <field name="physiotherapist_id" string="Fisioterapeuta"/>
                 <field name="treatment_id" string="Tratamiento"/>
+                <field name="treatment_duration" string="Duración"/>
                 <field name="state" string="Estado"/>
             </calendar>
         </field>
@@ -196,6 +203,7 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="price"/>
+                <field name="duration"/>
                 <field name="date_ids"/>
             </tree>
         </field>
@@ -211,6 +219,7 @@
                         <field name="name"/>
                         <field name="description"/>
                         <field name="price" widget="monetary"/>
+                        <field name="duration"/>
                         <field name="date_ids" widget="many2many_tags" readonly="1"/>
                     </group>
                 </sheet>
