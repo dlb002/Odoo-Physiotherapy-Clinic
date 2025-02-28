@@ -5,10 +5,10 @@
         <field name="model">physio.date</field>
         <field name="arch" type="xml">
             <tree
-                decoration-danger="state == 'cancelled'"
-                decoration-success="state == 'confirmed'"
-                decoration-info="state == 'performed'"
-                decoration-warning="state == 'pending'"
+                    decoration-danger="state == 'cancelled'"
+                    decoration-success="state == 'confirmed'"
+                    decoration-info="state == 'performed'"
+                    decoration-warning="state == 'pending'"
             >
                 <field name="patient_id"/>
                 <field name="physiotherapist_id"/>
@@ -56,15 +56,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="mt-1">
-                                    <span class="text-muted">Paciente: </span>
+                                    <span class="text-muted">Paciente:</span>
                                     <field name="patient_id"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Fisioterapeuta: </span>
+                                    <span class="text-muted">Fisioterapeuta:</span>
                                     <field name="physiotherapist_id"/>
                                 </div>
                                 <div class="mt-1">
-                                    <span class="text-muted">Tratamiento: </span>
+                                    <span class="text-muted">Tratamiento:</span>
                                     <field name="treatment_id"/>
                                 </div>
                             </div>
@@ -72,6 +72,19 @@
                     </t>
                 </templates>
             </kanban>
+        </field>
+    </record>
+
+    <record id="view_physio_date_calendar" model="ir.ui.view">
+        <field name="name">physio.date.calendar</field>
+        <field name="model">physio.date</field>
+        <field name="arch" type="xml">
+            <calendar string="Citas de Fisioterapia" date_start="datetime" color="state">
+                <field name="patient_id" string="Paciente"/>
+                <field name="physiotherapist_id" string="Fisioterapeuta"/>
+                <field name="treatment_id" string="Tratamiento"/>
+                <field name="state" string="Estado"/>
+            </calendar>
         </field>
     </record>
 
@@ -234,7 +247,9 @@
     <menuitem id="menu_physio_root" name="Clínica de Fisioterapia"/>
     <menuitem id="menu_physio_date" name="Citas" parent="menu_physio_root" action="action_physio_date"/>
     <menuitem id="menu_physio_patient" name="Pacientes" parent="menu_physio_root" action="action_physio_patient"/>
-    <menuitem id="menu_physio_physiotherapist" name="Fisioterapeutas" parent="menu_physio_root" action="action_physio_physiotherapist"/>
-    <menuitem id="menu_physio_treatment" name="Tratamientos" parent="menu_physio_root" action="action_physio_treatment"/>
+    <menuitem id="menu_physio_physiotherapist" name="Fisioterapeutas" parent="menu_physio_root"
+              action="action_physio_physiotherapist"/>
+    <menuitem id="menu_physio_treatment" name="Tratamientos" parent="menu_physio_root"
+              action="action_physio_treatment"/>
 
 </odoo>
