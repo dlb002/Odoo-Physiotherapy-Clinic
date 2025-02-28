@@ -174,7 +174,7 @@
         </field>
     </record>
 
-    <!-- Vista para fisioterapeutas -->
+    <!-- Vista para tratamientos -->
     <record id="view_physio_treatment_tree" model="ir.ui.view">
         <field name="name">physio.treatment.tree</field>
         <field name="model">physio.treatment</field>

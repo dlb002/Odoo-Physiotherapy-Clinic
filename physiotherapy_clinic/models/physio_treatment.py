@@ -4,6 +4,9 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class PhysioTreatment(models.Model):
+    """
+    Esta clase representa un tratamiento.
+    """
     _name = 'physio.treatment'
     _description = 'Tratamiento'
 

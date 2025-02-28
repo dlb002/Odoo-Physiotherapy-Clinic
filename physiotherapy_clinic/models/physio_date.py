@@ -6,6 +6,9 @@ from odoo.exceptions import ValidationError
 
 
 class PhysioDate(models.Model):
+    """
+    Esta clase representa una cita.
+    """
     _name = 'physio.date'
     _description = 'Cita'
 

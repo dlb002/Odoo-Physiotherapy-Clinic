@@ -5,6 +5,9 @@ from odoo.exceptions import ValidationError
 import re
 
 class PhysioPatient(models.Model):
+    """
+    Esta clase representa un paciente.
+    """
     _name = 'physio.patient'
     _description = 'Paciente'
 
