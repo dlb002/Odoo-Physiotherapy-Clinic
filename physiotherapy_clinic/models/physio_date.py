@@ -54,9 +54,9 @@ class PhysioDate(models.Model):
                 raise ValidationError("El paciente ya tiene una cita programada que se solapa con esta.")
 
 
-    @api.constrains('datetime')
+    @api.constrains('datetime', 'state')
     def _check_future_date(self):
-        """Validar que la fecha de la cita no sea anterior a la fecha actual"""
+        """Validar que la fecha de la cita no sea anterior a la fecha actual. Permite cambiarla si el estado es Realizada"""
         for record in self:
-            if record.datetime and record.datetime < fields.Datetime.now():
+            if record.state != 'performed' and record.datetime and record.datetime < fields.Datetime.now():
                 raise ValidationError("No se pueden programar citas en el pasado.")
