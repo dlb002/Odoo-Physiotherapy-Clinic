@@ -16,8 +16,6 @@ Physiotherapy Clinic Management
     'website': "https://es.linkedin.com/in/daniel-lopez-bermudez",
     # Indicamos que es una aplicación
     'application': True,
-    'price': 10.00,
-    'currency': 'EUR',
     # En la siguiente URL se indica qué categorías pueden usarse
     # https://github.com/odoo/odoo/blob/17.0/odoo/addons/base/data/ir_module_category_data.xml
     # Vamos a utilizar la categoría Productivity
@@ -34,5 +32,7 @@ Physiotherapy Clinic Management
         'views/physio_views.xml',
         # Se carga el reporte para imprimir las citas.
         'reports/tarea_template.xml',
-    ]
+    ],
+    'icon': 'static/description/icon.png',  # Icono
+    'images': ['static/description/thumbnail.png'],  # Imagen de portada
 }
