@@ -4,13 +4,13 @@
     'summary': """
 Clínica de Fisioterapia""",
     'description': """
-<h1>Physiotherapy Clinic Management</h1>
-    <p>This module helps manage physiotherapy clinic appointments, patients, and treatments.</p>
-    <ul>
-        <li>Manage patient records</li>
-        <li>Book and manage appointments</li>
-        <li>Track treatments</li>
-    </ul>
+Physiotherapy Clinic Management
+    This module helps manage physiotherapy clinic appointments, patients, and treatments.
+    
+        Manage patient records
+        Book and manage appointments
+        Track treatments
+    
 """,
     'author': "Daniel López Bermúdez",
     'website': "https://es.linkedin.com/in/daniel-lopez-bermudez",
