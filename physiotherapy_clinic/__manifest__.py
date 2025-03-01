@@ -30,5 +30,4 @@ Clínica de Fisioterapia""",
     'icon': 'static/description/icon.png',  # Icono
     'images': ['static/description/thumbnail.png'],  # Imagen de portada
     'license': 'LGPL-3',
-    'price': 49.95,
 }
