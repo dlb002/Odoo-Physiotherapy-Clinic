@@ -4,13 +4,7 @@
     'summary': """
 Clínica de Fisioterapia""",
     'description': """
-Physiotherapy Clinic Management
-    This module helps manage physiotherapy clinic appointments, patients, and treatments.
-    
-        Manage patient records
-        Book and manage appointments
-        Track treatments
-    
+<iframe src="/physiotherapy_clinic/static/description/index.html" width="100%" height="500px"></iframe>    
 """,
     'author': "Daniel López Bermúdez",
     'website': "https://es.linkedin.com/in/daniel-lopez-bermudez",
@@ -36,4 +30,5 @@ Physiotherapy Clinic Management
     'icon': 'static/description/icon.png',  # Icono
     'images': ['static/description/thumbnail.png'],  # Imagen de portada
     'license': 'LGPL-3',
+    
 }
