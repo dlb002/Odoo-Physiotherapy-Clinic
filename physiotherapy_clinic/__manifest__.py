@@ -16,7 +16,6 @@ Clínica de Fisioterapia""",
     'website': "https://es.linkedin.com/in/daniel-lopez-bermudez",
     # Indicamos que es una aplicación
     'application': True,
-    'license': 'MIT',
     'price': 10.00,
     'currency': 'EUR',
     # En la siguiente URL se indica qué categorías pueden usarse
