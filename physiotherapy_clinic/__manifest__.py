@@ -35,4 +35,5 @@ Physiotherapy Clinic Management
     ],
     'icon': 'static/description/icon.png',  # Icono
     'images': ['static/description/thumbnail.png'],  # Imagen de portada
+    'licence': 'MIT',
 }
