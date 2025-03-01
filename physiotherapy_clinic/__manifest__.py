@@ -4,12 +4,21 @@
     'summary': """
 Clínica de Fisioterapia""",
     'description': """
-Módulo para gestionar citas de fisioterapia, asignando terapeutas y controlando disponibilidad.
+<h1>Physiotherapy Clinic Management</h1>
+    <p>This module helps manage physiotherapy clinic appointments, patients, and treatments.</p>
+    <ul>
+        <li>Manage patient records</li>
+        <li>Book and manage appointments</li>
+        <li>Track treatments</li>
+    </ul>
 """,
     'author': "Daniel López Bermúdez",
     'website': "https://es.linkedin.com/in/daniel-lopez-bermudez",
     # Indicamos que es una aplicación
     'application': True,
+    'license': 'MIT',
+    'price': 10.00,
+    'currency': 'EUR',
     # En la siguiente URL se indica qué categorías pueden usarse
     # https://github.com/odoo/odoo/blob/17.0/odoo/addons/base/data/ir_module_category_data.xml
     # Vamos a utilizar la categoría Productivity
