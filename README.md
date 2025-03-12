@@ -62,7 +62,7 @@ Sigue estos pasos para instalar el módulo en tu instancia de Odoo:
 
 ## Licencia
 
-Este módulo se distribuye bajo la licencia [MIT](https://opensource.org/license/MIT).
+Este módulo se distribuye bajo la licencia [LGPL-3].
 
 ---
 
